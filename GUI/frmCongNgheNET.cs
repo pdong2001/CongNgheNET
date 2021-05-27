@@ -17,6 +17,7 @@ namespace GUI
         {
             InitializeComponent();
         }
+        DataTable data = new DataTable();
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
@@ -42,7 +43,8 @@ namespace GUI
 
         private void frmCongNgheNET_Load(object sender, EventArgs e)
         {
-            dgSanPham.DataSource = SanPhamBUS.Instance.GetTable();
+            data = SanPhamBUS.Instance.GetTable();
+            dgSanPham.DataSource = data;
             dgSanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgSanPham.AutoResizeColumn(0, DataGridViewAutoSizeColumnMode.AllCells);
             dgSanPham.AutoResizeColumn(2, DataGridViewAutoSizeColumnMode.AllCells);
@@ -52,12 +54,19 @@ namespace GUI
 
         private void dgSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow data = dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex];
-            txtMaSP.Text = data.Cells[0].Value.ToString();
-            txtTenSP.Text = data.Cells[1].Value.ToString();
-            txtSL.Text = data.Cells[2].Value.ToString();
-            txtGiaBan.Text = data.Cells[3].Value.ToString();
-            txtXuatSu.Text = data.Cells[4].Value.ToString();
+            if (dgSanPham.SelectedCells.Count > 0)
+            {
+                DataGridViewRow data = dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex];
+                if (data.Cells[0].Value == null)
+                {
+                    return;
+                }
+                txtMaSP.Text = data.Cells[0].Value.ToString();
+                txtTenSP.Text = data.Cells[1].Value.ToString();
+                txtSL.Text = data.Cells[2].Value.ToString();
+                txtGiaBan.Text = data.Cells[3].Value.ToString();
+                txtXuatSu.Text = data.Cells[4].Value.ToString();
+            }
         }
 
         private void btnMoi_Click(object sender, EventArgs e)
@@ -93,18 +102,37 @@ namespace GUI
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex].Cells[0].Value = txtMaSP.Text;
-            dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex].Cells[1].Value = txtTenSP.Text;
-            dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex].Cells[2].Value = txtSL.Text;
-            dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex].Cells[3].Value = txtGiaBan.Text;
-            dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex].Cells[4].Value = txtXuatSu.Text;
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][0].ToString().Trim() == dgSanPham.Rows[dgSanPham.SelectedCells[0].RowIndex].Cells[0].Value.ToString().Trim())
+                {
+                    data.Rows[i][0] = txtMaSP.Text;
+                    data.Rows[i][1] = txtTenSP.Text;
+                    data.Rows[i][2] = txtSL.Text;
+                    data.Rows[i][3] = int.Parse(txtGiaBan.Text);
+                    data.Rows[i][4] = int.Parse(txtXuatSu.Text);
+                }
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            dgSanPham.Rows.RemoveAt(dgSanPham.SelectedCells[0].RowIndex);
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][0].ToString().Trim() == txtMaSP.Text.Trim())
+                {
+                    data.Rows.RemoveAt(i);
+                }
+            }
         }
 
-
+        private void txtGiaBan_TextChanged(object sender, EventArgs e)
+        {
+            Control ctrl = (Control)sender;
+            if (ctrl.Text.Length == 0)
+            {
+                ctrl.Text = "0";
+            }
+        }
     }
 }

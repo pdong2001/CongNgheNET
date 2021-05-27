@@ -75,7 +75,7 @@ namespace GUI
             this.dgSanPham.RowTemplate.Height = 24;
             this.dgSanPham.Size = new System.Drawing.Size(1020, 399);
             this.dgSanPham.TabIndex = 1;
-            this.dgSanPham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSanPham_CellClick);
+            this.dgSanPham.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSanPham_CellClick);
             // 
             // panel1
             // 
@@ -110,7 +110,7 @@ namespace GUI
             // 
             // txtXuatSu
             // 
-            this.txtXuatSu.Location = new System.Drawing.Point(858, 21);
+            this.txtXuatSu.Location = new System.Drawing.Point(854, 41);
             this.txtXuatSu.Name = "txtXuatSu";
             this.txtXuatSu.Size = new System.Drawing.Size(141, 22);
             this.txtXuatSu.TabIndex = 4;
@@ -118,30 +118,32 @@ namespace GUI
             // 
             // txtGiaBan
             // 
-            this.txtGiaBan.Location = new System.Drawing.Point(646, 21);
+            this.txtGiaBan.Location = new System.Drawing.Point(642, 41);
             this.txtGiaBan.Name = "txtGiaBan";
             this.txtGiaBan.Size = new System.Drawing.Size(141, 22);
             this.txtGiaBan.TabIndex = 4;
-            this.txtGiaBan.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.txtGiaBan.TextChanged += new System.EventHandler(this.txtGiaBan_TextChanged);
             this.txtGiaBan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaBan_KeyPress);
             // 
             // txtSL
             // 
-            this.txtSL.Location = new System.Drawing.Point(425, 21);
+            this.txtSL.Location = new System.Drawing.Point(421, 41);
             this.txtSL.Name = "txtSL";
             this.txtSL.Size = new System.Drawing.Size(141, 22);
             this.txtSL.TabIndex = 4;
+            this.txtSL.TextChanged += new System.EventHandler(this.txtGiaBan_TextChanged);
+            this.txtSL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaBan_KeyPress);
             // 
             // txtTenSP
             // 
-            this.txtTenSP.Location = new System.Drawing.Point(217, 21);
+            this.txtTenSP.Location = new System.Drawing.Point(213, 41);
             this.txtTenSP.Name = "txtTenSP";
             this.txtTenSP.Size = new System.Drawing.Size(141, 22);
             this.txtTenSP.TabIndex = 4;
             // 
             // txtMaSP
             // 
-            this.txtMaSP.Location = new System.Drawing.Point(6, 21);
+            this.txtMaSP.Location = new System.Drawing.Point(5, 41);
             this.txtMaSP.Name = "txtMaSP";
             this.txtMaSP.Size = new System.Drawing.Size(141, 22);
             this.txtMaSP.TabIndex = 4;
@@ -149,7 +151,7 @@ namespace GUI
             // lblXuatSu
             // 
             this.lblXuatSu.AutoSize = true;
-            this.lblXuatSu.Location = new System.Drawing.Point(897, 1);
+            this.lblXuatSu.Location = new System.Drawing.Point(893, 21);
             this.lblXuatSu.Name = "lblXuatSu";
             this.lblXuatSu.Size = new System.Drawing.Size(60, 17);
             this.lblXuatSu.TabIndex = 3;
@@ -158,7 +160,7 @@ namespace GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(685, 1);
+            this.label3.Location = new System.Drawing.Point(681, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 17);
             this.label3.TabIndex = 3;
@@ -168,7 +170,7 @@ namespace GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(464, 1);
+            this.label2.Location = new System.Drawing.Point(460, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 17);
             this.label2.TabIndex = 3;
@@ -177,7 +179,7 @@ namespace GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(256, 1);
+            this.label1.Location = new System.Drawing.Point(252, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 17);
             this.label1.TabIndex = 3;
@@ -186,7 +188,7 @@ namespace GUI
             // lblMaSP
             // 
             this.lblMaSP.AutoSize = true;
-            this.lblMaSP.Location = new System.Drawing.Point(45, 1);
+            this.lblMaSP.Location = new System.Drawing.Point(44, 21);
             this.lblMaSP.Name = "lblMaSP";
             this.lblMaSP.Size = new System.Drawing.Size(53, 17);
             this.lblMaSP.TabIndex = 3;
